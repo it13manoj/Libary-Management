@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Admin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,25 +12,64 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::get('/', 'HomeController@index');
+
+Route::get('create','HomeController@register')->name("create");
+
+Route::get('wp-admin','SignupController@index')->name("wp-admin");
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
+    Route::post('create','SignupController@register')->name("create");
+    Route::post('login','SignupController@sign_in')->name("login");
+
+
+
+
+    Route::middleware([Admin::class])->group(function () {
+        Route::resources([
+            'dashboard' => 'dashboard',
+            'posts' => 'PostController'
+        ]);
+
+        Route::get('slider','AdminHomeController@slider')->name("slider");
+        Route::get('charity','AdminHomeController@charity')->name("charity");
+        Route::post('charity','AdminHomeController@charitySave')->name("charity");
+        Route::get('secondSection','AdminHomeController@secondSection')->name("secondSection");
+        Route::post('secondSection','AdminHomeController@secondSectionSave')->name("secondSection");
+        Route::get('appeals','AdminHomeController@appeals')->name("appeals");
+        Route::get('mission','AdminHomeController@mission')->name("mission");
+        Route::post('mission','AdminHomeController@missionSave')->name("mission");
+        Route::post('appeals','AdminHomeController@appealsSave')->name("appeals");
+        Route::get('about','AdminHomeController@index')->name("about");
+
+        Route::get('events/add','AdminHomeController@addEvents')->name("events/add");
+        Route::post('events/add','AdminHomeController@save')->name("events/add");
+        Route::post('events/update/{id}','AdminHomeController@update')->name("events/update");
+        Route::get('events','AdminHomeController@eventList')->name("events");
+        Route::get('events/edit/{id}','AdminHomeController@editevent')->name("events/edit");
+        Route::post('events/upload','AdminHomeController@upload')->name("events/upload");
+
+        Route::get('cat/add','CategoriesController@add')->name("cat/add");
+        Route::post('cat/add','CategoriesController@saveCat')->name("cat/add");
+        Route::get('cat-list','CategoriesController@list')->name("cat-list");
+
+        Route::get('organization/add','OriginationController@organizationAdd')->name("organization/add");
+        Route::post('organization/add','OriginationController@save')->name("organization/add");
+        Route::get('organization','OriginationController@organizationList')->name("organization");
+
+        Route::post('saveSlider','AdminHomeController@saveSlider')->name("saveSlider");
+
+        Route::get('cronJobs/{id}','AdminHomeController@cronJobs')->name("cronJobs");
+    });
+
 });
 
-Auth::routes();
 
-Route::get(md5('dashboard'), 'HomeController@index')->name(md5('dashboard'));
-Route::get(md5('UserClass'), 'ManagementController@UserClass')->name(md5('UserClass'));
-Route::get(md5('addClass'), 'ManagementController@addClass')->name(md5('addClass'));
-Route::post(md5('SaveClass'), 'ManagementController@SaveClass')->name(md5('SaveClass'));
-Route::get(md5('UserBook'), 'ManagementController@UserBook')->name(md5('UserBook'));
-Route::get(md5('addBooks'), 'ManagementController@addBooks')->name(md5('addBooks'));
-Route::post(md5('SaveBook'), 'ManagementController@SaveBook')->name(md5('SaveBook'));
-Route::get(md5('ViewBook'), 'ManagementController@ViewBook')->name(md5('ViewBook'));
-Route::get(md5('SubjectList'), 'ManagementController@SubjectList')->name(md5('SubjectList'));
-Route::get(md5('addSubject'), 'ManagementController@addSubject')->name(md5('addSubject'));
-Route::post(md5('SaveSubject'), 'ManagementController@SaveSubject')->name(md5('SaveSubject'));
-Route::post(md5('GetClass'), 'ManagementController@GetClass')->name(md5('GetClass'));
-Route::post(md5('GetBooks'), 'ManagementController@GetBooks')->name(md5('GetBooks'));
-Route::get(md5('UserList'), 'ManagementController@UserList')->name(md5('UserList'));
-Route::get(md5('addUsers'), 'ManagementController@addUsers')->name(md5('addUsers'));
-Route::post(md5('SaveUsers'), 'ManagementController@SaveUsers')->name(md5('SaveUsers'));
+// Front End Temaplate
+
+Route::get('about','AboutController@index')->name("about");
+Route::get('upcoming-events','EventController@upcoming')->name("upcoming-events");
+Route::get('past-events','EventController@past')->name("past-events");
+Route::get('event-details/{id}','EventController@details')->name("event-details");
+Route::get('contact','EventController@contact')->name("contact");
+
