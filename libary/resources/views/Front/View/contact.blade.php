@@ -7,7 +7,7 @@
 
 
       <!--Start breadcrumb area-->
-      <section class="breadcrumb-area" style="background-image: url(Theme/frontTemp/assets/images/breadcrumb/breadcrumb-7.jpg);">
+      <section class="breadcrumb-area" style="background-image: url({{asset('storage/'.$contact->images)}});">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -16,7 +16,7 @@
                             <div data-depth="0.20" class="parallax-layer shape wow zoomInRight"
                                 data-wow-duration="2000ms">
                                 <div class="shape1">
-                                    <img class="float-bob" src="Theme/frontTemp/assets/images/shape/breadcrumb-shape1.png" alt="">
+                                    <img class="float-bob" src="{{asset('Theme/frontTemp/assets/images/shape/breadcrumb-shape1.png')}}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                             <div data-depth="0.20" class="parallax-layer shape wow zoomInRight"
                                 data-wow-duration="2000ms">
                                 <div class="shape2">
-                                    <img class="zoominout" src="Theme/frontTemp/assets/images/shape/breadcrumb-shape2.png" alt="">
+                                    <img class="zoominout" src="{{asset('Theme/frontTemp/assets/images/shape/breadcrumb-shape2.png')}}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -56,14 +56,10 @@
                         <div class="sec-title">
                             <div class="sub-title martop0">
                                 <div class="inner">
-                                    <h3>Support LoveIcon With Heart!</h3>
+                                    <h3>{{$contact->title}}</h3>
                                 </div>
                             </div>
-                            <h2>Get In Touch With Us</h2>
-                            <p>Laboris nisi aliquip sed duis aute lorem ipsum dolor amet consectetur adipisicing
-                                sed eiusmod tempor tm incididunts lorem ipsum sed labore dolore magnad aliqua.
-                                Lorem ipsum dolor sit amet consectetur adipisicing.
-                            </p>
+                            {!!$contact->description!!}
                         </div>
                         <div class="contact-form">
                             <form id="contact-form" name="contact_form" class="default-form2"
@@ -128,44 +124,31 @@
                     <div class="sidebar-content-box">
                         <div class="contact-info-sidebar">
                             <ul>
-                                <li>
-                                    <div class="top">
-                                        <div class="icon">
-                                            <span class="flaticon-maps-and-flags"></span>
-                                        </div>
-                                        <div class="title">
-                                            <h3>Visit Office</h3>
-                                        </div>
-                                    </div>
-                                    <p>83 Andy Street, Madison<br>New Jersey - 78002</p>
-                                </li>
+                                @php
+                                    $array= array(
+                                    "2"=>"flaticon-maps-and-flags",
+                                    "0"=>"flaticon-phone-call-1",
+                                    "1"=>"flaticon-opened"
+                            );
 
-                                <li>
-                                    <div class="top">
-                                        <div class="icon">
-                                            <span class="flaticon-phone-call-1"></span>
-                                        </div>
-                                        <div class="title">
-                                            <h3>Phone</h3>
-                                        </div>
-                                    </div>
-                                    <p>Support <a href="tel:+11987654321">+1 700 888 1234</a></p>
-                                    <p>Events <a href="tel:+11987654321">+1 700 888 1200</a></p>
-                                </li>
+                                @endphp
 
+                                @if($Addcontact)
+                                @foreach($Addcontact as $key=>$row)
                                 <li>
-                                    <div class="top">
-                                        <div class="icon">
-                                            <span class="flaticon-opened"></span>
-                                        </div>
-                                        <div class="title">
-                                            <h3>Phone</h3>
-                                        </div>
+                                <div class="top">
+                                    <div class="icon">
+                                        <span class="{{$array[$key]}}"></span>
                                     </div>
-                                    <p><a href="mailto:info@templatepath.com">info@loveicon.org</a></p>
-                                    <p><a href="mailto:info@templatepath.com">support@domain.org</a></p>
+                                    <div class="title">
+                                        <h3>{{$row->heading3}}</h3>
+                                    </div>
+                                </div>
+                                <p>{{$row->heading2}}</p><p>{{$row->title}}</p>
                                 </li>
-
+                                @endforeach
+                                @endif
+                     
                             </ul>
                         </div>
                     </div>
@@ -176,24 +159,6 @@
     </section>
     <!--End Contact Style1 Area-->
 
-
-    <!--Start Google map area-->
-    <section class="google-map-area">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="contact-page-map-outer">
-                        <!--Map Canvas-->
-                        <div class="map-canvas" data-zoom="12" data-lat="-37.817085" data-lng="144.955631"
-                            data-type="roadmap" data-hue="#ffc400" data-title="Envato"
-                            data-icon-path="Theme/frontTemp/assets/images/resources/map-marker.png"
-                            data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     @include('Front.Common.footer')
 @endsection

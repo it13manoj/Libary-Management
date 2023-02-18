@@ -17,13 +17,13 @@
                         <img src="{{(array_key_exists(0,$img)) ? asset('storage/'.$img[0]) : ''}}" alt="">
                     </div>
                     <div class="main">
-                        <img src="{{asset('Theme/frontTemp/assets/images/resources/causes-style1_image-1.jpg')}}" alt="">
+                        <img src="{{(array_key_exists(1,$img)) ? asset('storage/'.$img[1]) : ''}}" alt="">
                     </div>
                     <div class="causes-style1_image3">
-                        <img src="{{asset('Theme/frontTemp/assets/images/resources/causes-style1_image-3.jpg')}}" alt="">
+                        <img src="{{(array_key_exists(2,$img)) ? asset('storage/'.$img[2]) : ''}}" alt="">
                     </div>
                     <div class="causes-style1_image4">
-                        <img src="{{asset('Theme/frontTemp/assets/images/resources/causes-style1_image-4.jpg')}}" alt="">
+                        <img src="{{(array_key_exists(3,$img)) ? asset('storage/'.$img[3]) : ''}}" alt="">
                     </div>
 
                 </div>

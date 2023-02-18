@@ -26,10 +26,11 @@ class HomeController extends Controller
         $charityHeading = Home::where("name","CharityHeading")->first();
         $charity = Home::where("name","Charity")->get();
         $section2 = Home::where("name","section2")->first();
-        $appeals = Home::where("name","appeals")->get();
-        $mission = Home::where("name","mission")->get();
+        $appeals = Home::with('categories')->where("name","appeals")->get();
+        $appealsHead = Home::where("name","appealsHead")->first();
+        $mission = Home::where("name","mission")->first();
         $Event = Event::where("status","1")->get();
-        return view('Front.View.index',compact('slider','charityHeading','charity','section2','appeals','mission','Event'));
+        return view('Front.View.index',compact('slider','charityHeading','charity','section2','appeals','mission','Event','appealsHead'));
     }
 
 

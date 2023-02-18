@@ -34,6 +34,8 @@
                             <li><a href="{{route('admin.appeals')}}">Section |||</a> </li>
                             <li><a href="{{route('admin.mission')}}">Section |V</a> </li>
                             <li><a href="{{route('admin.about')}}">About</a> </li>
+                            <li><a href="{{route('admin.contact')}}">Contact</a> </li>
+                            <li><a href="{{route('admin.addContact')}}">Add Contact</a> </li>
                         </ul>
                     </li>
                     <li class="menu-list">

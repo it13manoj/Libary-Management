@@ -37,10 +37,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
         Route::get('secondSection','AdminHomeController@secondSection')->name("secondSection");
         Route::post('secondSection','AdminHomeController@secondSectionSave')->name("secondSection");
         Route::get('appeals','AdminHomeController@appeals')->name("appeals");
+        Route::get('appeals/edit/{id}','AdminHomeController@appeals')->name("appeals");
+        Route::get('appeals/delete/{id}','AdminHomeController@appealsdelt')->name("appeals");
         Route::get('mission','AdminHomeController@mission')->name("mission");
         Route::post('mission','AdminHomeController@missionSave')->name("mission");
         Route::post('appeals','AdminHomeController@appealsSave')->name("appeals");
-        Route::get('about','AdminHomeController@index')->name("about");
+        Route::get('about','AdminHomeController@about')->name("about");
+        Route::post('about','AdminHomeController@aboutSave')->name("about");
+        Route::get('contact','AdminHomeController@contact')->name("contact");
+        Route::post('contact','AdminHomeController@contactSave')->name("contact");
+        Route::get('addContact','AdminHomeController@addContact')->name("addContact");
+        Route::get('addContact/edit/{id}','AdminHomeController@addContact')->name("addContact");
+        Route::get('addContact/delete/{id}','AdminHomeController@deleteContact')->name("addContact");
+        Route::post('addContact','AdminHomeController@addContactSave')->name("addContact");
 
         Route::get('events/add','AdminHomeController@addEvents')->name("events/add");
         Route::post('events/add','AdminHomeController@save')->name("events/add");

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\Origination;
 use App\Event;
+use App\Home;
 
 class EventController extends Controller
 {
@@ -26,7 +27,9 @@ class EventController extends Controller
     }
 
     public function contact(Request $request){
-        return view('Front.View.contact');
+        $contact = Home::where('name','contact')->first();
+        $Addcontact = Home::where('name','Addcontact')->get();
+        return view('Front.View.contact',compact('Addcontact','contact'));
     }
 
 

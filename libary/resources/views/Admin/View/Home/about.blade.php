@@ -20,26 +20,26 @@
             <section class="forms">
                 <div class="card card_border py-2 mb-4">
                     <div class="cards__heading">
-                        <h3>Our Mission & Goals <span></span></h3>
+                        <h3>About <span></span></h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.mission') }}" method="post"  enctype="multipart/form-data">
+                        <form action="{{ route('admin.about') }}" method="post"  enctype="multipart/form-data">
                             @CSRF
 
 
                             <div class="form-group">
                                 <input type="text" name="sectionHeadin2" class="form-control input-style"
-                                    value="{{$home->heading2}}" placeholder="Main heading">
+                                    value="{{$about->heading2}}" placeholder="Main heading">
                             </div>
 
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control input-style"
-                                    value="{{$home->title}}" placeholder="Enter Title">
+                                    value="{{$about->title}}" placeholder="Enter Title">
                             </div>
 
                             <div class="form-group">
                                 <textarea name="dis" id="editor" class="form-control input-style"
-                                     required style="height:450px">{{$home->description}}</textarea>
+                                     required style="height:450px">{{$about->description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <div class="custom-file">

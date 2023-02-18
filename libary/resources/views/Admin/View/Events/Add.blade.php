@@ -20,13 +20,13 @@
             <section class="forms">
                 <div class="card card_border py-2 mb-4">
                     <div class="cards__heading">
-                        <h3>Add Organization <span></span></h3>
+                        <h3>Add Event <span></span></h3>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.events/add') }}" method="post"  enctype="multipart/form-data">
                             @CSRF
                             <div class="form-group">
-                                    <select class="form-control input-style" name="categorries">
+                                    <select class="form-control input-style" name="categorries" required>
                                         <option value="">Select Categories</option>
                                         @foreach($Categories as $row)
                                             <option value="{{$row->id}}">{{$row->name}}</option>
@@ -34,7 +34,7 @@
                                     </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control input-style" name="organization">
+                                <select class="form-control input-style" name="organization" required>
                                     <option value="">Select Organization</option>
                                     @foreach($Origination as $row)
                                          <option value="{{$row->id}}">{{$row->name}}</option>
@@ -61,13 +61,13 @@
 
                             <div class="form-group">
                                 <textarea name="dis" id="editor" class="form-control input-style"
-                                     required style="height:450px"></textarea>
+                                     required style="height:450px" required></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="custom-file">
                                     <input type="file" name="file"
                                         class="custom-file-input" id="validatedCustomFile"
-                                       >
+                                        required>
                                     <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                                     <div class="invalid-feedback">Example invalid custom file feedback</div>
                                 </div>

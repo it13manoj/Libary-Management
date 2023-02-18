@@ -30,33 +30,17 @@ class AdminHomeController extends Controller
     }
 
     public function secondSection(Request $request){
-        $section = Home::where("name","section2")->first();
-        return view('Admin.View.Home.Section3',compact('section'));
+        $slider = Home::where("name","Hero")->get();
+        return view('Admin.View.Home.Section3',compact('slider'));
     }
 
-    public function appealsdelt(Request $request,$id){
-        $section = Home::find($id)->delete();
-        return redirect('admin/appeals');
-
-    }
-
-    public function appeals(Request $request,$id=""){
+    public function appeals(Request $request){
         $cat = Categories::get();
-        if($id){
-            $appeals = Home::find($id);
-        }
-
-        else{
-            $appeals = new Home();
-        }
-        $appealslist = Home::with("categories")->where("name","appeals")->get();
-        $appealsHead = Home::where("name","appealsHead")->first();
-        return view('Admin.View.Home.appeals',compact('cat','appeals','appealslist','appealsHead'));
+        return view('Admin.View.Home.appeals',compact('cat'));
     }
-
     public function mission(Request $request){
-        $home = Home::where("name","mission")->first();
-        return view('Admin.View.Home.Mission',compact('home'));
+        $cat = Categories::get();
+        return view('Admin.View.Home.Mission',compact('cat'));
     }
 
     public function secondSectionSave(Request $request){
@@ -67,12 +51,12 @@ class AdminHomeController extends Controller
         $new_array = array();
         if(!empty($request->file)){
             for($i=0; $i < sizeof($request->file); $i++){
-                array_push($new_array,$this->UploadImages('section2','upload'.$i,(array_key_exists($i,$request->file) ? $request->file[$i] : "")));
+                array_push($new_array,$this->UploadImages('section2','upload',(array_key_exists($i,$request->file) ? $request->file[$i] : "")));
             }
         }
             if(!empty($request->images)){
                 for($i=0; $i < sizeof($request->images); $i++){
-                    array_push($new_array,$request->images[$i]);
+                    array_push($new_array,$this->UploadImages('section2','upload',(array_key_exists($i,$request->images) ? $request->images[$i] : "")));
                 }
             }
             $home = new Home();
@@ -98,40 +82,38 @@ class AdminHomeController extends Controller
 
 
     public function appealsSave(Request $request){
-            $Homes = Home::where("name","appealsHead")->delete();
-            $Homes = new Home();
-            $Homes->heading2 = $request->sectionHeading1;
-            $Homes->heading3 = $request->sectionHeadin2;
-            $Homes->name = "appealsHead";
-            $Homes->save();
+        $home1 = Home::where("name","appeals")->count();
+        if($home1 > 0){
+            Home::where("name","appeals")->delete();
+        }
+
 
         $file="";
         if(!empty($request->file)){
                 $file=$this->UploadImages('appeals','upload', $request->file);
         }
             if(!empty($request->images)){
-                    $file=$request->images[0];
+                    $file=$this->UploadImages('appeals','upload',$request->images);
             }
-
-                if($request->id){
-                    $home = Home::find($request->id);
-                }else{
-                    $home = new Home();
-                }
-
+                $home = new Home();
 
                 $home->description=$request->discription;
                 $home->title=$request->title;
 
                 $home->images =$file;
                 $home->name="appeals";
-                if($request->title && $request->discription && $file)
                 $home->save();
 
                  return redirect()->back();
     }
 
     public function missionSave(Request $request){
+        $home1 = Home::where("name","mission")->count();
+        if($home1 > 0){
+            Home::where("name","mission")->delete();
+        }
+
+
         $file="";
         if(!empty($request->file)){
                 $file=$this->UploadImages('mission','upload', $request->file);
@@ -139,15 +121,13 @@ class AdminHomeController extends Controller
             if(!empty($request->images)){
                     $file=$this->UploadImages('mission','upload',$request->images);
             }
-                $home =  Home::where("name","mission")->first();
+                $home = new Home();
 
-                $home->description=$request->dis;
+                $home->description=$request->discription;
                 $home->title=$request->title;
                 $home->heading2=$request->sectionHeadin2;
-                if($file)
                 $home->images =$file;
                 $home->name="mission";
-
                 $home->save();
 
                  return redirect()->back();
@@ -368,110 +348,6 @@ class AdminHomeController extends Controller
         $event->status="0";
         $event->save();
         return \redirect()->back();
-    }
-
-
-    public function about(Request $request){
-        $about =  Home::where("name","abouts")->first();
-        return view('Admin.View.Home.about',compact('about'));
-    }
-
-    public function aboutSave(Request $request){
-        $file="";
-        if(!empty($request->file)){
-                $file=$this->UploadImages('abuts','upload', $request->file);
-        }
-            if(!empty($request->images)){
-                    $file=$this->UploadImages('abouts','upload',$request->images);
-            }
-
-            if( Home::where("name","abouts")->count() > 0){
-                $home =  Home::where("name","abouts")->first();
-            }else{
-                $home = new Home();
-            }
-
-
-                $home->description=$request->dis;
-                $home->title=$request->title;
-                $home->heading2=$request->sectionHeadin2;
-                if($file)
-                $home->images =$file;
-                $home->name="abouts";
-
-                $home->save();
-
-                 return redirect()->back();
-    }
-
-    public function contact(Request $request){
-        $contact =  Home::where("name","contact")->first();
-        return view('Admin.View.Home.contact',compact('contact'));
-    }
-
-    public function addContact(Request $request,$id=""){
-        if($id){
-            $contact =  Home::find($id);
-        }else{
-            $contact = new Home();
-        }
-
-        $Addcontact =  Home::where("name","Addcontact")->get();
-        return view('Admin.View.Home.addContact',compact('Addcontact','contact'));
-    }
-
-
-    public function deleteContact(Request $request,$id=""){
-            $contact =  Home::find($id)->delete();
-            return redirect('admin/addContact');
-    }
-
-
-
-
-    public function contactSave(Request $request){
-        $file="";
-        if(!empty($request->file)){
-                $file=$this->UploadImages('contact','upload', $request->file);
-        }
-            if(!empty($request->images)){
-                    $file=$this->UploadImages('contact','upload',$request->images);
-            }
-
-            if( Home::where("name","contact")->count() > 0){
-                $home =  Home::where("name","contact")->first();
-            }else{
-                $home = new Home();
-            }
-
-
-                $home->description=$request->dis;
-                $home->title=$request->title;
-                $home->heading2=$request->sectionHeadin2;
-                if($file)
-                $home->images =$file;
-                $home->name="contact";
-
-                $home->save();
-
-                 return redirect()->back();
-    }
-
-    public function addContactSave(Request $request){
-
-            if( $request->id > 0){
-                $home =  Home::find($request->id);
-            }else{
-                $home = new Home();
-            }
-
-
-                $home->heading3=$request->sectionHeadin1;
-                $home->title=$request->title;
-                $home->heading2=$request->sectionHeadin2;
-                $home->name="Addcontact";
-                $home->save();
-                 return redirect()->back();
     }
 
 }

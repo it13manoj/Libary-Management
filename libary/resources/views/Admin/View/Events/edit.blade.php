@@ -20,7 +20,7 @@
             <section class="forms">
                 <div class="card card_border py-2 mb-4">
                     <div class="cards__heading">
-                        <h3>Add Organization <span></span></h3>
+                        <h3>Edit Event <span></span></h3>
                     </div>
                     <div class="card-body">
                         <form action="{{ asset('admin/events/update/'.$events->id) }}" method="post"  enctype="multipart/form-data">

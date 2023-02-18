@@ -9,6 +9,9 @@
 
     <div class="main-content">
         <div class="container-fluid content-top-gap card">
+            <div class="cards__heading">
+                <h3>Events <span></span></h3>
+            </div>
             <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
