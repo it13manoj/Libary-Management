@@ -19,22 +19,23 @@
                     <div class="card-body">
                         <form action="{{ route('admin.organization/add') }}" method="post"  enctype="multipart/form-data">
                             @CSRF
+                            <input type="hidden" name="id" value="{{$Origination->id}}" />
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control input-style"
-                                    value="" placeholder="Name" required>
+                                    value="{{$Origination->name}}" placeholder="Name" required>
                             </div>
                             <div class="form-group">
                                 <input type="number" name="contact" class="form-control input-style"
-                                    value="" placeholder="Contact" required>
+                                    value="{{$Origination->contact}}" placeholder="Contact" required>
                             </div>
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control input-style"
-                                    value="" placeholder="Email" required>
+                                    value="{{$Origination->email}}" placeholder="Email" required>
                             </div>
 
                             <div class="form-group">
                                 <textarea name="dis" class="form-control input-style"
-                                     required></textarea>
+                                     required>{{$Origination->description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <div class="custom-file">
@@ -49,22 +50,22 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" name="fb" class="form-control input-style"
-                                    value="" placeholder="fb" required>
+                                    value="{{$Origination->fb}}" placeholder="fb" required>
                             </div>
 
                             <div class="form-group">
                                 <input type="text" name="inst" class="form-control input-style"
-                                    value="" placeholder="inst" required>
+                                    value="{{$Origination->inst}}" placeholder="inst" required>
                             </div>
 
                             <div class="form-group">
                                 <input type="text" name="tw" class="form-control input-style"
-                                    value="" placeholder="tw" required>
+                                    value="{{$Origination->tw}}" placeholder="tw" required>
                             </div>
 
                             <div class="form-group">
                                 <input type="text" name="ln" class="form-control input-style"
-                                    value="" placeholder="ln" required>
+                                    value="{{$Origination->ln}}" placeholder="ln" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-style mt-4">Submit</button>

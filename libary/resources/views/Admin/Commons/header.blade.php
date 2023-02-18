@@ -4,15 +4,15 @@
     <div class="menu-right">
       <div class="navbar user-panel-top">
         <div class="search-box">
-          <form action="#search-results.html" method="get">
+          {{-- <form action="#search-results.html" method="get">
             <input class="search-input" placeholder="Search Here..." type="search" id="search">
             <button class="search-submit" value=""><span class="fa fa-search"></span></button>
-          </form>
+          </form> --}}
         </div>
         <div class="user-dropdown-details d-flex">
           <div class="profile_details_left">
             <ul class="nofitications-dropdown">
-              <li class="dropdown">
+              {{-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
                     class="fa fa-bell-o"></i><span class="badge blue">3</span></a>
                 <ul class="dropdown-menu">
@@ -92,7 +92,7 @@
                     </div>
                   </li>
                 </ul>
-              </li>
+              </li> --}}
             </ul>
           </div>
           <div class="profile_details">
@@ -101,7 +101,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
                   aria-expanded="false">
                   <div class="profile_img">
-                    <img src="assets/images/profileimg.jpg" class="rounded-circle" alt="" />
+                    <img src="{{asset('storage/'.Auth::user()->pic)}}" class="rounded-circle" alt="" />
                     <div class="user-active">
                       <span></span>
                     </div>
@@ -109,14 +109,11 @@
                 </a>
                 <ul class="dropdown-menu drp-mnu" aria-labelledby="dropdownMenu3">
                   <li class="user-info">
-                    <h5 class="user-name">John Deo</h5>
+                    <h5 class="user-name">{{Auth::user()->name}}</h5>
                     <span class="status ml-2">Available</span>
                   </li>
-                  <li> <a href="#"><i class="lnr lnr-user"></i>My Profile</a> </li>
-                  <li> <a href="#"><i class="lnr lnr-users"></i>1k Followers</a> </li>
-                  <li> <a href="#"><i class="lnr lnr-cog"></i>Setting</a> </li>
-                  <li> <a href="#"><i class="lnr lnr-heart"></i>100 Likes</a> </li>
-                  <li class="logout"> <a href="#sign-up.html"><i class="fa fa-power-off"></i> Logout</a> </li>
+                  <li> <a href="{{route('admin.setting')}}"><i class="lnr lnr-user"></i>Setting</a> </li>
+                  <li class="logout"> <a href="{{route('admin.logout')}}"><i class="fa fa-power-off"></i> Logout</a> </li>
                 </ul>
               </li>
             </ul>

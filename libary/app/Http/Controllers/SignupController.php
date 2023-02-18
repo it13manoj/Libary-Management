@@ -33,6 +33,27 @@ class SignupController extends Controller
 
     }
 
+    public function setting(Request $request){
+        $user = User::find(Auth::user()->id);
+        return view('Admin.View.admin',compact('user'));
+    }
+
+    public function settingSave(Request $request){
+        $users = User::find(Auth::user()->id);
+        $users->name=$request->name;
+        $users->email=$request->email;
+        $users->contact=$request->contact;
+        if($request->file)
+        $users->pic=$this->UploadImages('Admin','upload', $request->file);
+        if($request->password  == $request->cpassword && $request->password!=" " && $request->password){
+            $users->password = Hash::make($request->password);
+        }
+        $users->save();
+        session()->flash('message', 'Succefully update records');
+        return redirect()->back();
+    }
+
+
     public function sign_up(Request $request){
         $request->validate([
             'name'=>'required|string',
@@ -62,5 +83,16 @@ class SignupController extends Controller
             return redirect()->back()->with('message','wrong');
         }
     }
+
+    public function logout(Request $request)
+{
+    Auth::logout();
+
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+}
 
 }

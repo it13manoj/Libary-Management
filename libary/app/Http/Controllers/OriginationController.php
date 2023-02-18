@@ -9,21 +9,38 @@ use App\Origination;
 
 class OriginationController extends Controller
 {
-    public function organizationAdd(Request $request){
-        return view('Admin.View.Organization.add');
+    public function organizationAdd(Request $request,$id=""){
+        if($id){
+            $Origination = Origination::find($id);
+        }else{
+            $Origination = new Origination();
+        }
+        return view('Admin.View.Organization.add',compact('Origination'));
     }
 
 
     public function organizationList(Request $request){
-        return view('Admin.View.Organization.list');
+        $Origination = Origination::get();
+        return view('Admin.View.Organization.list',compact('Origination'));
+    }
+
+    public function organizationdelete(Request $request,$id){
+        $Origination = Origination::find($id)->delete();
+        return \redirect("admin/organization");
     }
 
 
     public function save(Request $request){
-        $Origination= new Origination();
+        if($request->id){
+            $Origination= Origination::find($request->id);
+        }else{
+            $Origination= new Origination();
+        }
+
         $Origination->name = $request->name;
         $Origination->contact = $request->contact;
         $Origination->email = $request->email;
+        if($request->file)
         $Origination->pic = $this->UploadImages('Organization','Profile',$request->file);
         $Origination->description = $request->dis;
         $Origination->fb = $request->fb;
@@ -31,9 +48,14 @@ class OriginationController extends Controller
         $Origination->ln = $request->ln;
         $Origination->tw = $request->tw;
         $Origination->user_id = Auth::user()->id;
-        $Origination->save();
+        try{
+            $Origination->save();
+        }catch (Exception $e) {
+            return \redirect("admin/organization");
+        }
 
-        return \redirect()->back();
+
+        return \redirect("admin/organization");
 
     }
 }

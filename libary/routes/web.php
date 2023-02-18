@@ -26,10 +26,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 
 
     Route::middleware([Admin::class])->group(function () {
-        Route::resources([
-            'dashboard' => 'dashboard',
-            'posts' => 'PostController'
-        ]);
+
 
         Route::get('slider','AdminHomeController@slider')->name("slider");
         Route::get('charity','AdminHomeController@charity')->name("charity");
@@ -55,18 +52,29 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
         Route::post('events/add','AdminHomeController@save')->name("events/add");
         Route::post('events/update/{id}','AdminHomeController@update')->name("events/update");
         Route::get('events','AdminHomeController@eventList')->name("events");
+        Route::get('dashboard','AdminHomeController@eventList')->name("dashboard");
         Route::get('events/edit/{id}','AdminHomeController@editevent')->name("events/edit");
         Route::post('events/upload','AdminHomeController@upload')->name("events/upload");
 
         Route::get('cat/add','CategoriesController@add')->name("cat/add");
+        Route::get('cat/edit/{id}','CategoriesController@add')->name("cat/edit");
+        Route::get('cat/delete/{id}','CategoriesController@delete')->name("cat/edit");
         Route::post('cat/add','CategoriesController@saveCat')->name("cat/add");
         Route::get('cat-list','CategoriesController@list')->name("cat-list");
 
         Route::get('organization/add','OriginationController@organizationAdd')->name("organization/add");
+        Route::get('org/edit/{id}','OriginationController@organizationAdd')->name("org/edit");
+        Route::get('org/delete/{id}','OriginationController@organizationdelete')->name("org/delete");
         Route::post('organization/add','OriginationController@save')->name("organization/add");
         Route::get('organization','OriginationController@organizationList')->name("organization");
+        Route::get('user/contact','ContactsController@getContect')->name("user/contact");
+        Route::get('user/quotes','QuotesController@geQuotes')->name("user/quotes");
 
         Route::post('saveSlider','AdminHomeController@saveSlider')->name("saveSlider");
+
+        Route::get('setting','SignupController@setting')->name("setting");
+        Route::post('setting','SignupController@settingSave')->name("setting");
+        Route::get('logout','SignupController@logout')->name("logout");
 
         Route::get('cronJobs/{id}','AdminHomeController@cronJobs')->name("cronJobs");
     });
@@ -81,4 +89,6 @@ Route::get('upcoming-events','EventController@upcoming')->name("upcoming-events"
 Route::get('past-events','EventController@past')->name("past-events");
 Route::get('event-details/{id}','EventController@details')->name("event-details");
 Route::get('contact','EventController@contact')->name("contact");
+Route::post('sentMessage','ContactsController@sentMessage')->name("sentMessage");
+Route::post('quotes','QuotesController@quotes')->name("quotes");
 

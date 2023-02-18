@@ -14,6 +14,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,6 +22,11 @@
                             <tr>
                                 <td>{{$row->id}}</td>
                                 <td>{{$row->name}}</td>
+                                <td>
+                                <a href="{{asset("admin/cat/edit/".$row->id)}}"><span class="btn btn-info sm-btn">edit</span></a>
+
+                                <a href="{{asset("admin/cat/delete/".$row->id)}}"><span class="btn btn-danger sm-btn">delt</span></a>
+                            </td>
                             </tr>
                         @endforeach
                     </tbody>

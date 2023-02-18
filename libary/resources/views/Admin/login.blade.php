@@ -34,8 +34,13 @@
 </div>
 <style type="text/css">
 	form{
-		margin-top: 8em;
+		margin: 9rem;
+    box-shadow: 2px 4px 5px black;
+    padding: 9rem;
 	}
+    body{
+        overflow: hidden;
+    }
 </style>
 @endsection
 

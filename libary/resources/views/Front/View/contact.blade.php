@@ -62,8 +62,9 @@
                             {!!$contact->description!!}
                         </div>
                         <div class="contact-form">
-                            <form id="contact-form" name="contact_form" class="default-form2"
-                                action="Theme/frontTemp/assets/inc/sendmail.php" method="post">
+                            <form  class="default-form2"
+                                action="{{route('sentMessage')}}" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="input-box">
@@ -107,7 +108,7 @@
                                             <input id="form_botcheck" name="form_botcheck" class="form-control"
                                                 type="hidden" value="">
                                             <button class="btn-one" type="submit"
-                                                data-loading-text="Please wait...">
+                                              >
                                                 <span class="txt"><i class="arrow1 fa fa-check-circle"></i> Send
                                                     Message</span>
                                             </button>
@@ -116,6 +117,12 @@
                                 </div>
 
                             </form>
+                            <br />
+                            @if (session()->has('message'))
+                                <div class="alert alert-info">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -148,7 +155,7 @@
                                 </li>
                                 @endforeach
                                 @endif
-                     
+
                             </ul>
                         </div>
                     </div>

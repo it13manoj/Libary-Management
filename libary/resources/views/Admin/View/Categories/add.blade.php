@@ -19,9 +19,10 @@
                     <div class="card-body">
                         <form action="{{ route('admin.cat/add') }}" method="post">
                             @CSRF
+                            <input type="hidden" name="id" value="{{$Categories->id}}" />
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control input-style"
-                                    value="" placeholder="Categories Name" required>
+                                    value="{{$Categories->name}}" placeholder="Categories Name" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-style mt-4">Submit</button>

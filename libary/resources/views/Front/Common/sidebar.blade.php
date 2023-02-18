@@ -9,7 +9,7 @@
                 <div class="sidebar-info-contents">
                     <div class="content-inner">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/images/resources/logo-3.png" alt="" /></a>
+                            <a href="/"><img src="{{asset('assets/images/resources/logo-3.png')}}" alt="" /></a>
                         </div>
                         <div class="content-box">
                             <h4>About Us</h4>
@@ -18,7 +18,8 @@
                         </div>
                         <div class="form-inner">
                             <h4>Get a free quote</h4>
-                            <form action="index.html" method="post">
+                            <form action="{{route('quotes')}}" method="post">
+                                @csrf
                                 <div class="form-group">
                                     <input type="text" name="name" placeholder="Name" required="">
                                 </div>
@@ -36,6 +37,12 @@
                                 </div>
                             </form>
                         </div>
+                        <br />
+                        @if (session()->has('message'))
+                        <div class="alert alert-info">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                     </div>
                 </div>
             </div>
