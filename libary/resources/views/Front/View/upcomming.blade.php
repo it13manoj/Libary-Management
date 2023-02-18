@@ -33,7 +33,7 @@
                         <div class="border-box"></div>
                         <div class="breadcrumb-menu">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><span class="flaticon-right-arrow"></span></li>
                                 <li class="active">Upcoming Events</li>
                             </ul>
@@ -117,7 +117,7 @@
 
                     @endforeach
                 @endif
-             
+
 
         </div>
     </section>

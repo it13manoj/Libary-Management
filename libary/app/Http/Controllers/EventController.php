@@ -21,9 +21,9 @@ class EventController extends Controller
     }
 
     public function details(Request $request){
-
-        $event = Event::where('id',$request->id)->first();
-        return view('Front.View.details',compact('event'));
+        $Categories  = Categories::get();
+        $event = Event::with('Origination','Categories')->where('id',$request->id)->first();
+        return view('Front.View.details',compact('event','Categories'));
     }
 
     public function contact(Request $request){

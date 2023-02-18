@@ -14,7 +14,8 @@
             <section class="forms">
                 <div class="card card_border py-2 mb-4">
                     <div class="cards__heading">
-                        <h3>Section || <span></span></h3>
+                        <h3>Feed The Poor And
+                            Hungry Children<span></span></h3>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.secondSection') }}" method="post" enctype="multipart/form-data">

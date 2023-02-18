@@ -14,7 +14,7 @@
             <section class="forms">
                 <div class="card card_border py-2 mb-4">
                     <div class="cards__heading">
-                        <h3>appeals <span></span></h3>
+                        <h3>Appeals & Donations</h3>
                         <a href="{{asset('admin/appeals')}}" class="btn btn-danger sm-btn pull-right">Add</a>
                     </div>
                     <div class="card-body">

@@ -74,7 +74,7 @@
 
                             <div id="addMore"></div>
                             <button type="submit" class="btn btn-primary btn-style mt-4">Submit</button>
-                            <span class="btn btn-info btn-style mt-4 pull-right" onclick="AddMore()">add More</span>
+                            {{-- <span class="btn btn-info btn-style mt-4 pull-right" onclick="AddMore()">add More</span> --}}
 
                         </form>
 

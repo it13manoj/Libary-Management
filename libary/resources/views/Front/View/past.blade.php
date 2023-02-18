@@ -6,7 +6,7 @@
     @include('Front.Common.header')
 
      <!--Start breadcrumb area-->
-     <section class="breadcrumb-area" style="background-image: url(Theme/frontTemp/assets/images/breadcrumb/breadcrumb-5.jpg);">
+     <section class="breadcrumb-area" style="background-image: url({{asset('Theme/frontTemp/assets/images/breadcrumb/breadcrumb-5.jpg')}});">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -15,7 +15,7 @@
                             <div data-depth="0.20" class="parallax-layer shape wow zoomInRight"
                                 data-wow-duration="2000ms">
                                 <div class="shape1">
-                                    <img class="float-bob" src="Theme/frontTemp/assets/images/shape/breadcrumb-shape1.png" alt="">
+                                    <img class="float-bob" src="{{asset('Theme/frontTemp/assets/images/shape/breadcrumb-shape1.png')}}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -28,14 +28,14 @@
                             </div>
                         </div>
                         <div class="title">
-                            <h2>Upcoming Events</h2>
+                            <h2>Past Events</h2>
                         </div>
                         <div class="border-box"></div>
                         <div class="breadcrumb-menu">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><span class="flaticon-right-arrow"></span></li>
-                                <li class="active">Upcoming Events</li>
+                                <li class="active">Past Events</li>
                             </ul>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                     @endforeach
                 @endif
 
-               
+
 
         </div>
     </section>

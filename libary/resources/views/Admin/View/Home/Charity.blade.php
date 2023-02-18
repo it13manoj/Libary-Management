@@ -14,7 +14,7 @@
             <section class="forms">
                 <div class="card card_border py-2 mb-4">
                     <div class="cards__heading">
-                        <h3>Slider <span></span></h3>
+                        <h3>Charity With Difference <span></span></h3>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.charity') }}" method="post" enctype="multipart/form-data">
@@ -60,7 +60,7 @@
 
 
                             <button type="submit" class="btn btn-primary btn-style mt-4">Submit</button>
-                            <span class="btn btn-info btn-style mt-4 pull-right" onclick="AddMore()">add More</span>
+                            {{-- <span class="btn btn-info btn-style mt-4 pull-right" onclick="AddMore()">add More</span> --}}
 
                         </form>
 

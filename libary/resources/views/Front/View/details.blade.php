@@ -14,49 +14,49 @@
                         <div class="event-details_content">
 
                             <div class="event-details-image-box">
-                                <img src="{asset('Theme/frontTemp/assets/images/events/event-details-1.jpg'}}" alt="">
+                                <img src="{{asset('storage/'.$event->pic)}}" alt="">
                                 <div class="category">
-                                    <h6>health & Education</h6>
+                                    <h6>{{$event->Categories->name}}</h6>
                                 </div>
                             </div>
 
                             <div class="event-details-text-box">
-                                <h2>Contribute for the Educational &<br> Health Programs Globally</h2>
+                                <h2>{{$event->title}}</h2>
                                 <ul class="event-info">
                                     <li>
                                         <div class="icon">
-                                            <img src="Theme/frontTemp/assets/images/icon/date-1.png" alt="">
+                                            <img src="{{asset('Theme/frontTemp/assets/images/icon/date-1.png')}}" alt="">
                                             <div class="overlay-icon">
-                                                <img src="Theme/frontTemp/assets/images/icon/date-1-bg.png" alt="">
+                                                <img src="{{asset('Theme/frontTemp/assets/images/icon/date-1-bg.png')}}" alt="">
                                             </div>
                                         </div>
                                         <div class="text">
                                             <p>Event Date</p>
-                                            <h3>April 17, 2021<br> 5:00 PM</h3>
+                                            <h3>{{date('d-F',strtotime($event->Event_Date))}}<br> {{date('h:i:A',strtotime($event->Event_Date))}}</h3>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="icon">
-                                            <img src="Theme/frontTemp/assets/images/icon/map-marker-1.png" alt="">
+                                            <img src="{{asset('Theme/frontTemp/assets/images/icon/map-marker-1.png')}}" alt="">
                                             <div class="overlay-icon">
-                                                <img src="Theme/frontTemp/assets/images/icon/map-marker-1-bg.png" alt="">
+                                                <img src="{{asset('Theme/frontTemp/assets/images/icon/map-marker-1-bg.png')}}" alt="">
                                             </div>
                                         </div>
                                         <div class="text">
                                             <p>Event Location</p>
-                                            <h3>83 Andy Street,<br> Madison NJ - 78002</h3>
+                                            <h3>{{$event->location}}</h3>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="icon">
-                                            <img src="Theme/frontTemp/assets/images/icon/cost-1.png" alt="">
+                                            <img src="{{asset('Theme/frontTemp/assets/images/icon/cost-1.png')}}" alt="">
                                             <div class="overlay-icon">
-                                                <img src="Theme/frontTemp/assets/images/icon/cost-1-bg.png" alt="">
+                                                <img src="{{asset('Theme/frontTemp/assets/images/icon/cost-1-bg.png')}}" alt="">
                                             </div>
                                         </div>
                                         <div class="text">
                                             <p>Event Cost</p>
-                                            <h3>$25 - $134<br> Age: 18 & Above</h3>
+                                            <h3>{{$event->cost}}</h3>
                                         </div>
                                     </li>
                                 </ul>
@@ -73,10 +73,10 @@
                                             <h5>Share Cause</h5>
                                         </div>
                                         <ul class="social-links">
-                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="{{$event->tw}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="{{$event->fb}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="{{$event->inst}}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                            <li><a href="{{$event->ln}}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -96,36 +96,20 @@
                                         <img src="Theme/frontTemp/assets/images/resources/sidebar-author-1.png" alt="">
                                     </div>
                                     <div class="title-holder">
-                                        <h3>Saima Hayden</h3>
-                                        <p>Nostrud aliquip exrcitation laboris<br>nisiut temp duis autey. Lorem
-                                            unt<br>ipsum sit amet elit dolor.</p>
+                                        <h3>{{$event->Origination->name}}</h3>
+                                        {!!$event->Origination->description!!}
                                     </div>
                                     <ul class="social-links">
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                        <li><a href="{{$event->Origination->tw}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                        <li><a href="{{$event->Origination->fb}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="{{$event->Origination->inst}}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                        <li><a href="$event->Origination->ln"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <!--End Single Sidebar Box-->
                             <!--Start Single Sidebar Box-->
-                            <div class="single-sidebar-box">
-                                <div class="single-sidebar_search_box">
-                                    <div class="title">
-                                        <h3>Search</h3>
-                                    </div>
-                                    <div class="sidebar-search-box wow fadeInUp animated animated animated"
-                                        data-wow-delay="0.1s" data-wow-duration="1200ms"
-                                        style="visibility: visible; animation-duration: 1200ms; animation-delay: 0.1s; animation-name: fadeInUp;">
-                                        <form class="search-form" action="#">
-                                            <input placeholder="Keyword" type="text">
-                                            <button type="submit"><i class="fa fa-search"
-                                                    aria-hidden="true"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+
                             <!--End Single Sidebar Box-->
                             <!--Start Single Sidebar Box-->
                             <div class="single-sidebar-box">
@@ -134,16 +118,13 @@
                                         <h3>Categories</h3>
                                     </div>
                                     <ul class="sidebar-categories-box">
-                                        <li><a href="#"><i class="fa fa-check-circle" aria-hidden="true"></i>Charity for
+                                        @if($Categories)
+                                            @foreach($Categories as $row)
+                                        <li><a href="#"><i class="{{($row->id==$event->category_id)? 'fa fa-check-circle' : 'fa fa-times-circle-o'}}" aria-hidden="true"></i>               {{$row->name}}
                                                 Poor</a></li>
-                                        <li><a href="#"><i class="fa fa-check-circle" aria-hidden="true"></i>Feed the
-                                                People</a></li>
-                                        <li><a href="#"><i class="fa fa-check-circle" aria-hidden="true"></i>Donations:
-                                                How to?</a></li>
-                                        <li><a href="#"><i class="fa fa-check-circle" aria-hidden="true"></i>Duties &
-                                                Resposibility</a></li>
-                                        <li><a href="#"><i class="fa fa-check-circle" aria-hidden="true"></i>Food Supply
-                                                Chains</a></li>
+
+                                                    @endforeach
+                                                @endif
                                     </ul>
                                 </div>
                             </div>
@@ -246,7 +227,7 @@
             tr>td>img {
             max-width: fit-content !important;
             width: 4.2rem !important;
-            
+
         }
         </style>
     @include('Front.Common.footer')

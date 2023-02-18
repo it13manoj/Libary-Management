@@ -11,7 +11,7 @@
                     </div>
                     <div class="donate-form">
 
-                        <form method="post" action="sendemail.php" class="donate-form-1">
+                        <form  class="donate-form-1">
                             <ul class="clearfix">
                                 <li class="select-box left">
                                     <select class="selectpicker" name="donation">

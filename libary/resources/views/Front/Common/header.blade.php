@@ -56,7 +56,7 @@
             <div class="outer-box clearfix">
                 <div class="header-left clearfix pull-left">
                     <div class="logo" style="width: 6em">
-                        <a href="index.html"><img src="{{asset('Theme/frontTemp/logo/logo.jpeg') }}" alt="Awesome Logo"
+                        <a href="/"><img src="{{asset('Theme/frontTemp/logo/logo.jpeg') }}" alt="Awesome Logo"
                                 title=""></a>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
 
                     <div class="header-right_buttom">
                         <div class="btns-box">
-                            <a class="btn-one" href="causes-details.html"><span class="txt"><i
+                            <a class="btn-one" href="#"><span class="txt"><i
                                         class="arrow1 fa fa-check-circle"></i>Donate Now</span></a>
                         </div>
                         <div class="side-content-button">
